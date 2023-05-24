@@ -10,7 +10,7 @@ Chage port to 7891
 + Python3
 
 ## Install
-click to [download](https://github.com/tarimoe/alfred-clashx/releases) and double-click the file to install
+[Download ClashX.alfredworkflow](https://github.com/tarimoe/alfred-clashx/releases) and double-click it  to install
 
 ## Thank
 + [@ischaojie/ualfred](https://github.com/ischaojie/ualfred)
