@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>moe.tari.clashx.terminal.proxy</string>
+	<key>connections</key>
+	<dict>
+		<key>8364FA6F-B325-4E1E-BBC0-785DD0F660A9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>68C900AA-5399-4FBF-810A-D30EFD45F48C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>tari</string>
+	<key>description</key>
+	<string>Terminal Proxy</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>ClashX</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>cx</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>#!/bin/bash
+
+function exit_err {
+	cat &lt;&lt; EOB
+	{"items": [
+		{
+			"valid": false,
+			"uid": "error",
+			"title": "Error: Can't find python3 in env or python using python2"
+		}
+	]}
+EOB
+	exit 1
+}
+
+if command -v python3 &gt; /dev/null; then
+    python3 clashx.py "{query}"
+else
+    if ! command -v python &gt; /dev/null; then
+        # python3 or python command found
+        exit_err
+    fi
+
+    # Check if python2
+    if python -c "import sys; exit(0) if sys.version_info.major == 2 else exit(1)"; then
+        # python 2 detected
+        exit_err
+    fi
+
+    # Run script with python
+    python3 clashx.py "{query}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>clashx终端代理命令</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8364FA6F-B325-4E1E-BBC0-785DD0F660A9</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>68C900AA-5399-4FBF-810A-D30EFD45F48C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>68C900AA-5399-4FBF-810A-D30EFD45F48C</key>
+		<dict>
+			<key>xpos</key>
+			<real>380</real>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>8364FA6F-B325-4E1E-BBC0-785DD0F660A9</key>
+		<dict>
+			<key>xpos</key>
+			<real>170</real>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>v1.0</string>
+	<key>webaddress</key>
+	<string>tari.moe</string>
+</dict>
+</plist>
